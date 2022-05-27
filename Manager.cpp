@@ -8,10 +8,13 @@
 #include <sstream>
 #include <iomanip>
 
-const int BUFFER_SIZE = 50;
-const int MAX_NUM_PLAYERS = 6;
-const char FILE_NAME[] = "players.txt";
+/*******************************************************
+    FUNCTION IMPLEMENTATIONS FOR THE MANAGER CLASS
+*******************************************************/
 
+/**
+ * Shows the main menu and options.
+ */
 void Manager::showMainMenu() {
     std::cout 
         << '\n' 
@@ -28,6 +31,14 @@ void Manager::showMainMenu() {
         << char(192) << std::string(40, char(196)) << char(217) << '\n'; 
 }
 
+
+/**
+ * Prompts the user for a numeric input and returns
+ * the number only if is a digit and is not empty, 
+ * if not it returns -1.
+ *
+ * @return {int} number inputted by the user
+ */
 int Manager::getNumberFromUser() {
     char buffer[BUFFER_SIZE];
     std::cin.clear();
@@ -38,6 +49,15 @@ int Manager::getNumberFromUser() {
     return atoi(buffer);    
 }
 
+
+/**
+ * Prompts the user for a text input and updates
+ * the char array pointed to by the input
+ *
+ * @param {char *} buffer Text variable to update
+ * @return {bool} Returns true only if the text entered
+ *          by the user is not a digit and is not empty
+ */
 bool Manager::getTextFromUser(char *buffer) {
     char text[BUFFER_SIZE];
     std::cin.clear();
@@ -49,15 +69,37 @@ bool Manager::getTextFromUser(char *buffer) {
     return true;
 }
 
+
+/**
+ * Verifies that two indexes are within range
+ * of the players vector
+ *
+ * @param {int} index1 First index to verify
+ * @param {int} index2 Second index to verify
+ * @return {bool} Returns true only if the params are within range
+ */
 bool Manager::areIndexesWithinRange(int index1, int index2) {
     return  index1 >= 0 && index1 < players.size() && 
             index2 >= 0 && index2 < players.size() && index1 != index2;
 }
 
+
+/**
+ * Verifies that an index is within range
+ * of the players vector
+ * @param {int} index Index to verify
+ * @return {bool} Returns true only if index is within range
+ */
 bool Manager::isIndexWithinRange(int index) {
     return  index >= 0 && index < players.size();
 }
 
+
+/**
+ * Prompts the user for the name, and the life points 
+ * of the new player, and it updates the players vector
+ * with a new player object pointer
+ */
 void Manager::promptToAddNewPlayer() {
     if (players.size() < MAX_NUM_PLAYERS) {
         char buffer[BUFFER_SIZE];
@@ -82,6 +124,12 @@ void Manager::promptToAddNewPlayer() {
     }
 }
 
+
+/**
+ * Prompts the user for two player record numbers
+ * and displays if they are have the same name and
+ * life points, or if they are different.
+ */
 void Manager::promptToCompareTwoPlayerRecords() {
     if (players.size() >= 2) {
         int index1{0}, index2{0};
@@ -113,23 +161,29 @@ void Manager::promptToCompareTwoPlayerRecords() {
             }
         }
     } else {
-        std::cout << "Not enough players to compare" << std::endl;
+        std::cout << "[INFO] Not enough players to compare" << std::endl;
     }
 }
 
+
+/**
+ * Prompts the user for a player record number to delete
+ * @return {int} Returns an index selected by the user
+ */
 int Manager::promptToDeletePlayerRecord() {
     if (players.empty()) return -1;
     if (players.size() == 1)
         std::cout << "[USER] Enter 1 to confirm delete only record: ";
     else 
         std::cout << "[USER] Enter an index between " << 1 << " and " << players.size() << ": ";
-
-    int index = getNumberFromUser();
-    if (!isIndexWithinRange(index - 1))
-        return -1;
-    return index - 1;
+    return getNumberFromUser() - 1;
 }
 
+
+/**
+ * Prompts the user for a player record number to edit
+ * @return {int} Returns an index selected by the user
+ */
 int Manager::promptToEditPlayerRecord() {
     if (players.empty()) return -1;
     if (players.size() == 1)
@@ -139,6 +193,13 @@ int Manager::promptToEditPlayerRecord() {
     return getNumberFromUser() - 1;
 }
 
+
+/**
+ * Returns true if the input text is a digit
+ *
+ * @param {char *} buffer Text variable to verify
+ * @return {bool} Returns true if the text is a digit
+ */
 bool Manager::isBufferADigit(const char* buffer) {
     for (int i = 0; i < strlen(buffer); i++) {
         if (!isdigit(buffer[i]))
@@ -147,6 +208,12 @@ bool Manager::isBufferADigit(const char* buffer) {
     return true;
 }
 
+
+/**
+ * Reads a player list from the text file "players.txt"
+ * generates a new player object for each row and adds its 
+ * object pointer to the players vector
+ */
 void Manager::readPlayersFromFile() {
     std::ifstream myFile(FILE_NAME, std::ios::in);
     if (myFile.is_open()) {
@@ -165,6 +232,12 @@ void Manager::readPlayersFromFile() {
     }
 }
 
+
+/**
+ * Writes to the text file "players.txt", a row for each
+ * player object name and life points in the players vector
+ *     playerName, lifePoints
+ */
 void Manager::writePlayersToFile() {
     std::ofstream myFile;
     myFile.open(FILE_NAME, std::ios::out);
@@ -179,6 +252,14 @@ void Manager::writePlayersToFile() {
     }
 }
 
+
+/**
+ * Returns true if it succeded in deleting a player record
+ * It verifies that the parameter index is within the players vector 
+ * range, and deletes the player object from it
+ * @param {int} index Index of the record to delete
+ * @return {bool} Returns true if it was deleted successfully
+ */
 bool Manager::deletePlayerRecord(int index) {
     if (!isIndexWithinRange(index)) {
         showMessage(messages::ERROR, "Invalid");
@@ -189,6 +270,15 @@ bool Manager::deletePlayerRecord(int index) {
     return true;
 }
 
+
+/**
+ * Returns true of it a player record has been edited successfuly.
+ * It verifies that the parameter index is within the players vector
+ * range, and prompts the user to edit either the name field
+ * or the life points field
+ * @param {int} index Index of the record to edit
+ * @return {bool} Returns true if it was edited successfully
+ */
 bool Manager::editPlayerRecord(int index) {
     if (!isIndexWithinRange(index)) {
         showMessage(messages::ERROR, "Invalid");
@@ -232,6 +322,13 @@ bool Manager::editPlayerRecord(int index) {
     return true;
 }
 
+
+/**
+ * Prints a table with all the records in the players vector
+ * with three columns, the first column is the 1-indexed record number,
+ * the second column is the player name, and the third column is the 
+ * player life points.
+ */
 void Manager::printPlayersTable() {
     if (!players.empty()) {
         showMessage(messages::INFO, "Showing all players: ", true);
@@ -249,6 +346,10 @@ void Manager::printPlayersTable() {
     }
 }
 
+
+/**
+ * Prints the table title fo the records table
+ */
 void Manager::printPlayersTableTitle() {
     std::cout 
         << '\n' << char(218) 
@@ -264,6 +365,10 @@ void Manager::printPlayersTableTitle() {
         << std::string(14, char(196)) << char(180) << '\n';
 }
 
+
+/**
+ * Prints the table members fo the records table
+ */
 void Manager::printPlayersTableMembers(const Player *player, int id) {
     std::cout << std::left
         << char(179) << " " << std::setw(8) << id << " " 
@@ -272,6 +377,10 @@ void Manager::printPlayersTableMembers(const Player *player, int id) {
         << char(179) << '\n';    
 }
 
+
+/**
+ * Prints the table middle section or footer section
+ */
 void Manager::printPlayersTableFooter(table c) {
     if (c == table::middle) {
         std::cout << char(195) 
@@ -286,11 +395,23 @@ void Manager::printPlayersTableFooter(table c) {
     }    
 }
 
+
+/**
+ * Free allocated memory of all the player objects
+ * in the players vector
+ */
 void Manager::freePlayersFromMemory() {
     for (auto &player : players)
         delete player;
 }
 
+
+/**
+ * Helper function to display a formatted message
+ * @param {enum class} m Type of message to include
+ * @param {char *} text Message to display
+ * @param {bool} new_line If true, add a new line at the begining of the message
+ */
 void Manager::showMessage(messages m, const char *text, bool new_line) {
     if (new_line)
         std::cout << std::endl;
@@ -302,5 +423,4 @@ void Manager::showMessage(messages m, const char *text, bool new_line) {
         std::cout << "[USER] ";
 
     std::cout << text << std::endl;
-
 }

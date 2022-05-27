@@ -2,7 +2,9 @@
 #define PLAYER_H
 #include <iostream>
 
-class Player {
+class Player 
+{
+    // Global friend functions to display a player object
     friend void display(const Player &player);
     friend void display(const Player *player);
 

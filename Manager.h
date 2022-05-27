@@ -6,10 +6,16 @@
 enum class table { title, middle, end };
 enum class messages { ERROR, USER, INFO };
 
+// GLOBAL VARIABLES
+const int BUFFER_SIZE = 50;
+const int MAX_NUM_PLAYERS = 6;
+const char FILE_NAME[] = "players.txt";
+
 class Manager 
 {
 private:
     std::vector<Player*> players;
+
 public:
     void showMainMenu();
     int getNumberFromUser();
@@ -35,7 +41,5 @@ public:
     void freePlayersFromMemory();
     void showMessage(messages m, const char *text, bool new_line = false);
 };
-
-
 
 #endif // MANAGER_H
