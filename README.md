@@ -1,13 +1,13 @@
 # Program to manage player records #
+<img align="right" src="https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white"/>
+<img align="right" src="https://img.shields.io/badge/CMake-064F8C?style=for-the-badge&logo=cmake&logoColor=white"/>
 
 ## Description ##
 
-This project is a console application that you can use to manage a player list. It starts by reading player records from a text file called "players.txt" in the same location, if it doesn't find it, it starts with an empty player list. Then it shows a menu of the options you can choose. You can add players to the list, compare two player records and delete or edit a record.
+This project is a console application that you can use to manage a player list. It starts by reading player records from a text file called "players.txt" in the same location, if it doesn't find it, it starts with an empty player list. Then it shows a menu of the options you can choose from. You can add players to the list, compare two player records and delete or edit a record.
 On exiting the program, it writes the current players to the "players.txt" file, so you have them available next time you load the application.
 
 This project was developed in C++, and I'm using CMake to compile an executable.
-<img align="right" src="https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white"/>
-<img align="right" src="https://img.shields.io/badge/CMake-064F8C?style=for-the-badge&logo=cmake&logoColor=white"/>
 
 https://user-images.githubusercontent.com/3021010/170606338-4203c1bd-b2f4-41c7-a707-ad0b08de39bb.mp4
 
@@ -15,14 +15,37 @@ https://user-images.githubusercontent.com/3021010/170606338-4203c1bd-b2f4-41c7-a
 ## Features ##
 
 The application shows the Program Menu:
-<ul>
-  <li> a) Display all players</li>
-  <li> b) Add a player</li>
-  <li> c) Compare two player records</li>
-  <li> d) Delete a player record</li>
-  <li> e) Edit a player record</li>
-  <li> x) Exit</li>
-</ul>
+
+* a) Display all players 
+  * Shows a table with all the player records
+* b) Add a player
+  * Prompts the user to enter a new player's name and life points
+* c) Compare two player records 
+  * Prompts the user to enter two record indexes to compare. It shows that the two records are the same only if they have the same name and life points. It shows [Invalid] if the input is not numeric or if it's out of the list range.
+* d) Delete a player record 
+  * Prompts the user to enter a record index to delete it from the list. It shows [Invalid] if the input is not numeric or if it's out of the list range.
+* e) Edit a player record 
+  * Prompts the user to enter a record index to edit it from the list. It shows [Invalid] if the input is not numeric or if it's out of the list range. After that it prompts the user to choose which field to edit, the name or the life points.
+* x) Exit
+  * Ends the program, writing the player's list to the "players.txt" file.
+
+
+## Details of the Project ##
+
+### Main ###
+The main program shows the Main Menu, manages the user selection and validates the input. It makes sure that the input is a character and that is a valid option. If is not a valid option, it shows a message [Invalid], and shows the Main Menu again. The main program instanciates an object of the Manager class to call methods to perform adding, deleting or editing a player records, and display all records. It also calls the Manager class methods to read and write the player's list to the "players.txt" file, on the start and end of the program.
+
+### Manager Class ### 
+This class has a vector of pointers to the Player class, named 'players'. It contains methods to:
+- Show main menu
+- Get number or text from user
+- Index validation
+- Prompt the user to add new player, compare two records, delete or edit a player record
+- Read and write player's vector to the "players.txt" file
+- Print a table with all player records
+
+### Player Class ### 
+
 
 
 ## Files & Directories ##
@@ -83,10 +106,8 @@ Please refer to the following section for instructions on how to configure and r
   ```
 </details>
 
-## Usage
-
 
 ### About Me ###
-My name is Marissa Campa, I'm a mechatronics engineer with a master of science in automation.
+My name is Marissa Campa, I'm a Mechatronics Engineer with a Master of Science in Automation.
 
 My e-mail is 📧 (marissag.campa@gmail.com) and my [LinkedIn Profile](https://www.linkedin.com/in/marissa-campa/)
