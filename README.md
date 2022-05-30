@@ -4,7 +4,7 @@
 
 ## 🗒️ Summary ##
 
-This project is a console application that you can use to manage a player list. It starts by reading player records from a text file called "players.txt" in the same location, if it doesn't find it, it starts with an empty player list. Then it shows a menu of the options you can choose from. You can add players to the list, compare two player records and delete or edit a record.
+This project is a C++ application that you can use to manage a player list. It starts by reading player records from a text file called "players.txt" in the same location, if it doesn't find it, it starts with an empty player list. Then it shows a menu of the options you can choose from. You can add players to the list, compare two player records and delete or edit a record.
 On exiting the program, it writes the current players to the "players.txt" file, so you have them available next time you load the application.
 
 This project was developed in C++, and I'm using CMake to compile an executable.
