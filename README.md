@@ -122,7 +122,7 @@ Please refer to the following section for instructions on how to configure and r
 </details>
 
 
-### 👋 About Me ###
+## 👋 About Me
 My name is Marissa Campa, I'm a Mechatronics Engineer with a Master of Science in Automation.
 
 My e-mail is 📧 (marissag.campa@gmail.com) and 
