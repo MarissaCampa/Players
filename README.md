@@ -84,7 +84,7 @@ The player class has name and life points as member variables. It contains:
 Please refer to the following section for instructions on how to configure and run this project on ![image](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
 
 <details>
-  <summary><h3>Configure and compile a CMake project</h3></summary>
+  <summary><h3> &nbsp; Configure and compile a CMake project</h3></summary>
   
   <p>This is a CMake project that compiles C++ files and creates an application executable. </p>
 
@@ -125,8 +125,6 @@ Please refer to the following section for instructions on how to configure and r
 ## 👋 About Me
 My name is Marissa Campa, I'm a Mechatronics Engineer with a Master of Science in Automation.
 
-My e-mail is 📧 (marissag.campa@gmail.com) and 
-<a href="https://www.linkedin.com/in/marissa-campa/">
- <img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />
-</a>
+You can reach me on &nbsp; [![Linkedin Badge](https://img.shields.io/badge/-marissa-blue?style=flat&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/marissa-campa/) &nbsp; or &nbsp; [![Gmail Badge](https://img.shields.io/badge/-marissag.campa@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:marissag.campa@gmail.com)](mailto:marissag.campa@gmail.com)
+
   
