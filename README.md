@@ -1,6 +1,6 @@
-# Program to manage player records #
-<img align="right" src="https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white"/>
+# Program to Manage Player Records #
 <img align="right" src="https://img.shields.io/badge/CMake-064F8C?style=for-the-badge&logo=cmake&logoColor=white"/>
+<img align="right" src="https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white"/>
 
 ## 🗒️ Summary ##
 
@@ -79,7 +79,7 @@ The player class has name and life points as member variables. It contains:
 </section>
 
 
-## 💽 Installation ##
+## 💽 Compile and run the project
 
 Please refer to the following section for instructions on how to configure and run this project on ![image](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
 
